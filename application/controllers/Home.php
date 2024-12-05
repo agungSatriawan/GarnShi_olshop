@@ -25,6 +25,9 @@ class Home extends CI_Controller
 			$data['cart'] 			= $this->Admin_model->cart($data['user']['id']);
 		}
 
+
+
+
 		$data['title'] 			= 'Gar&Shi';
 		$data['product']		= $this->Admin_model->slide1('new arrival');
 		$data['carousel']		= $this->Admin_model->slide1('carousel');
