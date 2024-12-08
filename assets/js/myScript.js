@@ -154,7 +154,8 @@ function loadListProductVarian() {
 
 
     var arr = URL.split('/');//arr[0]='example.com'
-    let id_product = arr[6];
+    console.log(arr)
+    let id_product = arr[5];
     if (id_product != null) {
         $('#t_list_produk_varian').dataTable({
 
@@ -317,7 +318,7 @@ $('body').on('click', '.updateProduct', function () {
                 tags: true
             });
             $('button[name="deleteProduct"]').show();
-            $('.title-varian').html(' <a class="btn btn-success" href="/GarnShi/admin/detailVarian/' + data.res.id_product + '"><i class="fa-solid fa-pencil"></i> variation details</a>');
+            $('.title-varian').html(' <a class="btn btn-success" href="/admin/detailVarian/' + data.res.id_product + '"><i class="fa-solid fa-pencil"></i> variation details</a>');
             $('.modal-title').html('Upadate Product');
             $('button[type="submit"]').html('<i class="fa-regular fa-pen-to-square"></i> Update Product');
             $('input[name="product_name"]').val(data.res.product_name);
@@ -326,7 +327,7 @@ $('body').on('click', '.updateProduct', function () {
             $('.box-variasi').hide();
             $('input[name="price[]"]').val('Rp. ' + rupiah(data.res.price));
             $('textarea[name="desc"]').html(data.res.description);
-            $('form[name="addProduct"]').attr('action', base_url + '/admin/submitUpdateProduct/' + data.res.id_product)
+            $('form[name="addProduct"]').attr('action', base_url + 'admin/submitUpdateProduct/' + data.res.id_product)
             $('select[name="uom"] option[value=' + data.res.id_uom + ']').attr("selected", "selected");
             $('select[name="color[]"]').select2('destroy');
             $('select[name="size[]"]').select2('destroy');

@@ -128,12 +128,12 @@ a {
   align-items: center;
   justify-content: center;
   transform: translatey(0px);
-  animation: pulse 1.5s infinite;
+  /* animation: pulse 1.5s infinite; */
   box-shadow: 0 0 0 0 #42db87;
-  -webkit-animation: pulsing 1.25s infinite cubic-bezier(0.66, 0, 0, 1);
+  /* -webkit-animation: pulsing 1.25s infinite cubic-bezier(0.66, 0, 0, 1);
   -moz-animation: pulsing 1.25s infinite cubic-bezier(0.66, 0, 0, 1);
-  -ms-animation: pulsing 1.25s infinite cubic-bezier(0.66, 0, 0, 1);
-  animation: pulsing 1.25s infinite cubic-bezier(0.66, 0, 0, 1);
+  -ms-animation: pulsing 1.25s infinite cubic-bezier(0.66, 0, 0, 1); */
+  /* animation: pulsing 1.25s infinite cubic-bezier(0.66, 0, 0, 1); */
   font-weight: normal;
   font-family: sans-serif;
   text-decoration: none !important;
@@ -197,3 +197,7 @@ body {
 }
 
 /* box selected */
+
+.text-blue {
+  color: skyblue !important;
+}

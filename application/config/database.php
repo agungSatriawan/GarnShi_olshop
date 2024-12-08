@@ -76,14 +76,14 @@ $query_builder = TRUE;
 $db['default'] = array(
 	'dsn'	=> '',
 
-	'hostname' => 'localhost',
-	'username' => 'root',
-	'password' => '',
-	'database' => 'garshi',
-	// 'hostname' => '103.229.73.24',
-	// 'username' => 'garnshic_garnshic',
-	// 'password' => 'Agungsat2102!',
-	// 'database' => 'garnshic_2024',
+	// 'hostname' => 'localhost',
+	// 'username' => 'root',
+	// 'password' => '',
+	// 'database' => 'garshi',
+	'hostname' => '103.229.73.24',
+	'username' => 'garnshic_garnshic',
+	'password' => 'Agungsat2102!',
+	'database' => 'garnshic_2024',
 
 
 

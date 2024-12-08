@@ -29,11 +29,11 @@
 
                                                  <div class=" col overflow-auto">
                                                      <div class="variant-selector">
-                                                         <?php foreach ($detail_product as $dp) : ?>
 
+                                                         <?php foreach ($detail_product as $dp) : ?>
                                                              <div class="col p-2 d-flex text-left">
-                                                                 <a class="img-varian slideThumb" data-lightbox="roadtrip" data-title="<?= $dp['image_varian'] ?>" href="<?= base_url('/assets/images/product/') . $dp['image_varian'] ?>">
-                                                                     <img src="<?= base_url('/assets/images/product/') . $dp['image_varian'] ?>" alt="product" class="img" height="75">
+                                                                 <a class="img-varian slideThumb" data-lightbox="roadtrip" data-title="<?= $dp['image'] ?>" href="<?= base_url('/assets/images/product/') . $dp['image'] ?>">
+                                                                     <img src="<?= base_url('/assets/images/product/') . $dp['image'] ?>" alt="product" class="img" height="75">
                                                                  </a>
                                                              </div>
 
@@ -50,12 +50,17 @@
                                  </div>
                              </div>
                              <div class="col-sm-6">
-                                 <h3 class="element-title text-uppercase">
+                                 <h3 class="element-title text-uppercase my-0">
                                      <a href="#" class="item-anchor"><?= $detail_product[0]['product_name'] ?></a>
+
                                  </h3>
-                                 <del>
-                                     <p>Rp. <span class="harga-satuan satuan" name="quant[0]"><?= number_format($detail_product[0]['price']) ?></span></p>
-                                 </del>
+                                 <h5><b><?= $detail_product[0]['subjudul'] ?></b></h5>
+                                 <?php if ($detail_product[0]['price'] != $detail_product[0]['price_diskon']) : ?>
+                                     <del>
+                                         <p class="hargaNormal mt-3">Rp. <span class="harga-satuan satuan" name="quant[0]"><?= number_format($detail_product[0]['price']) ?></span></p>
+                                     </del>
+                                 <?php endif ?>
+
 
 
 
@@ -94,7 +99,7 @@
 
                                              <div class="variant-selector">
                                                  <?php foreach ($varianSize as $vs) : ?>
-                                                     <div class="variantSize" data-image=<?= $vs['image'] ?> data-value="<?= $vs['id_size'] ?>"><?= $vs['size'] ?></div>
+                                                     <div class="variantSize" data-image=<?= $vs['image'] ?> data-id="<?= $vs['id'] ?>" data-value="<?= $vs['id_size'] ?>"><?= $vs['size'] ?></div>
                                                  <?php endforeach; ?>
                                              </div>
                                              <input type="hidden" id="selectedVariantsize" value="">

@@ -258,17 +258,15 @@
 
                 <?php foreach ($shop as $s) : ?>
 
-                    <div class="col-auto">
+                    <div class="col-auto my-3">
                         <div class="swiper-slide swiper-slide-active" role="group" aria-label="1 / 3">
                             <div class="product-item image-zoom-effect link-effect">
                                 <div class="image-holder">
-                                    <a href="<?= base_url('home/detail/' . $s['id']) ?>">
+                                    <a href="<?= base_url('home/detail/' . $s['id']) ?>" style="height: 350px;">
                                         <img src="<?= base_url('assets/images/product/') . $s['image'] ?>" alt="product" class="product-image img-fluid" width="250">
                                     </a>
                                     <a href="#" data-id="<?= $s['id'] ?>" class="btn-icon <?= check_whiteList($s['id']) ?> btn-wishlist">
-                                        <svg width="24" height="24" viewBox="0 0 24 24">
-                                            <use xlink:href="#heart"></use>
-                                        </svg>
+                                        <i class="fa-regular fa-heart"></i>
                                     </a>
                                     <div class="product-content">
                                         <h5 class="text-uppercase fs-5 mt-3">

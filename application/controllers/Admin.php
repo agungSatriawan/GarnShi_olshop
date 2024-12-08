@@ -211,13 +211,33 @@ class Admin extends CI_Controller
 
 				$config['allowed_types']        = 'png|jpeg|jpg';
 				$config['max_size']             = '100000';
-				$config['upload_path']          = './assets/images/product/';
+				$config['upload_path']          = './assets/images/desktop/';
 
 				$this->load->library('upload', $config);
 				if (!$this->upload->do_upload('doc')) {
 					$error = $this->upload->display_errors();
 					echo $error;
+				} else {
+					$this->load->library('image_lib');
+					$dataGambar = array('upload_data' => $this->upload->data());
+
+					// Cek ukuran gambar
+					if ($dataGambar['upload_data']['image_width'] > 1024 || $dataGambar['upload_data']['image_height'] > 768) {
+						// Resize gambar dan simpan ke folder product
+						$config['image_library']  		= 'gd2';
+						$config['source_image']     	= './assets/images/desktop/' . $dataGambar['upload_data']['file_name'];
+						$config['new_image']       		= './assets/images/product/' . $dataGambar['upload_data']['file_name'];
+						$config['width']             	= 500; // Atur ukuran resize sesuai kebutuhan
+
+
+						$this->load->library('image_lib', $config);
+
+						if (!$this->image_lib->resize()) {
+							echo $this->image_lib->display_errors();
+						}
+					}
 				}
+
 				$filename = $this->upload->data('file_name');
 				$coverImage .= $k == 0 ? $filename : "";
 				array_push($arrayFilename, [
@@ -608,13 +628,12 @@ class Admin extends CI_Controller
 		$price 						= $this->input->post('price');
 
 		$category 					= $this->input->post('category');
-		$desc 						= htmlspecialchars($this->input->post('desc'));
+		$desc 						= $this->input->post('desc');
 		$filename 					= '';
 		$data 						= [];
 		$dataImage					= [];
-		$price = str_replace("Rp. ", "", $price);
+		$image_row					= [];
 
-		$price = intval(str_replace(".", "", $price[0]));
 
 		$image_row = $_FILES['product_image']['name'];
 

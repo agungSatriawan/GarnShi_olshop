@@ -21,11 +21,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="format-detection" content="telephone=no">
     <meta name="apple-mobile-web-app-capable" content="yes">
-    <meta name="author" content="Agung">
+    <meta name="author" content="">
     <meta name="description" content="Belanja Busana dan Baju Muslim, Jilbab, Kerudung, dan Baju Anak di toko retail dan grosir online. Ready Stock, Siap Kirim dan Boleh Tukar." />
     <meta name="keywords" content="Toko Online, Jilbab, Kerudung, Busana Muslim, Baju Muslim, Baju Anak Muslim" />
     <meta name="description" content="Terinspirasi dari keindahan pantai putih, koleksi terbaru GarnShi hadir dengan perpaduan warna-warna lembut dan siluet yang elegan. Sempurna untuk menemani momen spesial Anda.
 ">
+    <meta name="p:domain_verify" content="60004123c7d88ccfdd6ea00d9a2cd587"/>
     <link rel="icon" type="image/x-icon" href="<?= base_url('assets/') ?>images/gs.png" />
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ" crossorigin="anonymous">
     <link rel="stylesheet" type="text/css" href="<?= base_url('assets/') ?>css/vendor.css">
@@ -45,6 +46,7 @@
 
     <link rel="stylesheet" href="https://cdn.datatables.net/buttons/2.2.3/css/buttons.dataTables.min.css" type="text/css">
     <link rel="stylesheet" href="https://cdn.datatables.net/1.10.20/css/jquery.dataTables.min.css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <link href="<?= base_url('assets/css/lightbox.css') ?>" rel="stylesheet" />
 
 

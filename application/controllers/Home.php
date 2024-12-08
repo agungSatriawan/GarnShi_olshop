@@ -52,12 +52,13 @@ class Home extends CI_Controller
 			$data['cart'] 			= $this->Admin_model->cart($data['user']['id']);
 		}
 
-		$data['product']		= $this->Admin_model->slide1('For Women');
-		$data['detail_product']	= $this->Admin_model->detail_product($id);
-		$data['prov_kurir']		= $this->db->get('prov_kurir')->result_array();
-		$getIdProduct = $this->db->get_where('varian', ['id' => $id])->row_array();
-		$getIdProduct = $getIdProduct['id_product'];
-		$data['varian'] 			= $this->Admin_model->color($getIdProduct);
+		$data['product']				= $this->Admin_model->slide1('For Women');
+		$data['prov_kurir']				= $this->db->get('prov_kurir')->result_array();
+		$getIdProduct 					= $this->db->get_where('varian', ['id' => $id])->row_array();
+		$getIdProduct 					= $getIdProduct['id_product'];
+		$data['detail_product']			= $this->Admin_model->detail_product($id);
+
+		$data['varian'] 				= $this->Admin_model->color($getIdProduct);
 		$data['varianSize'] 			= $this->Admin_model->size($getIdProduct);
 
 		// $data['varian'] = $this->db->get_where('varian', ['id_product' => $getIdProduct])->result_array();
@@ -70,7 +71,69 @@ class Home extends CI_Controller
 		$this->load->view('template/footer', $data);
 		$this->load->view('template/script', $data);
 	}
+	public function prov()
+	{
+		$id = $this->input->post('id');
+		$res = $this->db->get_where('kab_kurir', ['province_id' => $id])->result_array();
+		echo json_encode($res);
+	}
+	public function kabkot()
+	{
+		$kabkot = $this->input->post('kabkot');
 
+		$res = $this->db->get_where('kec', ['KABKOT' => $kabkot])->result_array();
+		echo json_encode($res);
+	}
+	public function kec()
+	{
+		$kec = $this->input->post('kec');
+
+		$res = $this->db->get_where('kel', ['KEC' => $kec])->result_array();
+		echo json_encode($res);
+	}
+	public function cost()
+	{
+		$destination = $this->input->post('destination');
+		$weight = $this->input->post('weight');
+		$courier = $this->input->post('courier');
+		$key = '76e175bf6df5ed22b7f0d7700a797993';
+		$origin = 23;
+
+		if ($destination != '' && $weight != '' && $courier != '') {
+
+
+
+			$curl = curl_init();
+
+			curl_setopt_array($curl, array(
+				CURLOPT_URL => "https://api.rajaongkir.com/starter/cost",
+				CURLOPT_RETURNTRANSFER => true,
+				CURLOPT_ENCODING => "",
+				CURLOPT_MAXREDIRS => 10,
+				CURLOPT_TIMEOUT => 30,
+				CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+				CURLOPT_CUSTOMREQUEST => "POST",
+				CURLOPT_POSTFIELDS => "origin=" . $origin . "&destination=" . $destination . "&weight=" . $weight . "&courier=" . $courier . "",
+				CURLOPT_HTTPHEADER => array(
+					"content-type: application/x-www-form-urlencoded",
+					"key: " . $key . ""
+				),
+			));
+
+			$response = curl_exec($curl);
+			$err = curl_error($curl);
+
+			curl_close($curl);
+
+			if ($err) {
+				echo "cURL Error #:" . $err;
+			} else {
+				echo $response;
+			}
+		} else {
+			return false;
+		}
+	}
 
 	public function AddCart()
 	{
@@ -162,6 +225,13 @@ class Home extends CI_Controller
 		echo $res;
 	}
 
+	public function search()
+	{
+		$search = htmlspecialchars($this->input->post('search'));
+		$res = $this->Admin_model->search($search);
+		echo json_encode($res);
+	}
+
 
 
 	// function untuk logout
@@ -200,5 +270,13 @@ class Home extends CI_Controller
 	{
 		$this->session->unset_userdata('invoice');
 		$this->load->view('template/payment_failed');
+	}
+
+	public function changeSize()
+	{
+		$id = $this->input->post('id');
+		$res = $this->db->get_where('varian', ['id' => $id])->row_array();
+
+		echo json_encode($res);
 	}
 }

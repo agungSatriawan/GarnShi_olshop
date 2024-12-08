@@ -41,12 +41,12 @@
                                       <div class="card-header">
                                           <h3 class="card-title text-center">List Product Gar&Shi</h3>
                                       </div>
-                                      <div class="row justify-content-end p-3">
+                                      <!-- <div class="row justify-content-end p-3">
                                           <div class="col-sm-2">
                                               <button type="button" class="btn btn-primary addProduct" data-toggle="modal" data-target="#addProduct"><i class="fa-solid fa-plus"></i> Add Product</button>
 
                                           </div>
-                                      </div>
+                                      </div> -->
 
                                       <div class="row justify-content-center">
                                           <div class="col-sm-11 p-3 table-responsive">
@@ -129,7 +129,7 @@
 
 
   <!-- Modal -->
-  <div class="modal fade" id="addProduct" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal fade" id="addProduct" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="false">
       <div class="modal-dialog modal-lg" role="document">
           <div class="modal-content">
               <div class="modal-header">

@@ -92,18 +92,18 @@
 
 
 
-<section id="billboard" class="bg-light py-5">
+<section id="billboard" class="bg-light">
     <div class="container">
         <div class="row justify-content-center">
             <h1 class="section-title text-center mt-4" data-aos="fade-up">New Arrival</h1>
 
         </div>
         <div class="row">
-            <div class="swiper main-swiper py-4" data-aos="fade-up" data-aos-delay="600">
-                <div class="swiper-wrapper d-flex border-animation-left">
+            <div class="swiper main-swiper py-4" data-aos="fade-up" data-aos-delay="300" id="">
+                <div class="swiper-wrapper d-flex border-animation-left ">
 
                     <?php foreach ($product as $p) : ?>
-                        <div class="swiper-slide">
+                        <div class="swiper-slide p-3">
                             <div class="banner-item image-zoom-effect">
                                 <div class="image-holder">
                                     <a href="<?= base_url('home/detail/' . $p['id']) ?>?s=<?= $p['product_name'] ?>">
@@ -114,34 +114,78 @@
                                     <h5 class="element-title text-uppercase">
                                         <a href="<?= base_url('home/detail/' . $p['id']) ?>" class="item-anchor"><?= $p['product_name'] ?></a>
                                     </h5>
-                                    <div class="detailInfo" style="height: 75px; overflow: hidden;">
-                                        <p><?= html_entity_decode($p['description']) ?></p>
-                                    </div>
+
                                     <div class="btn-left">
-                                        <a href="<?= base_url('home/detail/' . $p['id']) ?>" class="btn-link fs-6 text-uppercase item-anchor text-decoration-none">Discover Now</a>
+                                        <a href="<?= base_url('home/detail/' . $p['id']) ?>" class="btn-link fs-6 text-uppercase item-anchor text-decoration-none text-blue">Discover Now</a>
                                     </div>
                                 </div>
                             </div>
                         </div>
                     <?php endforeach; ?>
                 </div>
+
+                <div class="icon-arrow icon-arrow-left" tabindex="0" role="button" aria-label="Previous slide" aria-controls="swiper-wrapper-faae99199ec3ecc2">
+                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                </div>
+
+                <div class="icon-arrow icon-arrow-right" tabindex="0" role="button" aria-label="Next slide" aria-controls="swiper-wrapper-faae99199ec3ecc2">
+                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                </div>
+
+
+
                 <div class="swiper-pagination"></div>
             </div>
+
+
+
+
+            <!-- <div id="carouselExampleDark2" class="carousel carousel-dark slide">
+
+
+                <div class="carousel-inner">
+
+                    <?php $y = 0; ?>
+                    <?php foreach ($product as $p) : ?>
+
+                        <div class="carousel-item <?= $y == 0 ? 'active' : '' ?>" data-bs-interval="5000">
+                            <a href="<?= base_url('home/detail/' . $p['id']) ?>?s=<?= $p['product_name'] ?>">
+                                <img src="<?= base_url('assets/') ?>images/product/<?= $p['image'] ?>" class="d-block" alt="...">
+                            </a>
+
+                        </div>
+
+
+                        <?php $y++; ?>
+                    <?php endforeach; ?>
+                </div>
+
+
+                <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleDark2" data-bs-slide="prev">
+                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                    <span class="visually-hidden">Previous</span>
+                </button>
+                <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleDark2" data-bs-slide="next">
+                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                    <span class="visually-hidden">Next</span>
+                </button>
+            </div> -->
 
         </div>
 
         <div class="row justify-content-center">
 
-            <div class="col-md-6 text-center" data-aos="fade-up" data-aos-delay="300">
+            <!-- <div class="col-md-6 text-center" data-aos="fade-up" data-aos-delay="300">
                 <p>🌊 The Story of "In the Heart of the Sea" 🌊</p>
 
                 <p> Terinspirasi oleh ketenangan laut biru, koleksi ini mengangkat keindahan alam bawah laut yang memikat. Setiap bordir kerang dan bintang laut melambangkan harmoni dan kekuatan, sementara payet mutiara menyimbolkan keanggunan abadi.</p>
 
-                <p> Hijab Paris Japan Premium ini adalah penghormatan untuk wanita yang tenang namun penuh daya—seperti laut itu sendiri. Dengan desain eksklusif dan detail yang memikat, In the Heart of the Sea dirancang untuk membalut Anda dengan keanggunan yang menenangkan, setiap kali Anda memakainya.</p>
+                <p> Hijab Paris Premium Gar&Shi ini adalah penghormatan untuk wanita yang tenang namun penuh daya—seperti laut itu sendiri. Dengan desain eksklusif dan detail yang memikat, In the Heart of the Sea dirancang untuk membalut Anda dengan keanggunan yang menenangkan, setiap kali Anda memakainya.</p>
                 <p>
                     ✨ Hadir dalam edisi terbatas, siap menyelami keindahan?
                 </p>
-            </div>
+            </div> -->
+
         </div>
     </div>
 </section>

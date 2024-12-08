@@ -37,6 +37,61 @@ $(document).ready(function () {
     //     dropdownParent: $('#myModal')
     // });
 
+    $('body').on('keyup change', '#search-form', function (e) {
+        e.preventDefault()
+        let search = $(this).val();
+        if (search.length > 3) {
+            $.ajax({
+                url: base_url + 'home/search',
+                type: 'post',
+                dataType: 'json',
+                data: {
+                    search
+                },
+                success: function (data) {
+                    let isiData = '';
+                    data.forEach(d => {
+
+                        isiData += `   <div class="col">
+                                    <div class="col-auto my-3">
+                                        <div class="swiper-slide swiper-slide-active" role="group" aria-label="1 / 3">
+                                            <div class="product-item image-zoom-effect link-effect">
+                                                <div class="image-holder">
+                                                    <a href="`+ base_url + 'home/detail/' + d['id'] + `" style="height: 350px;">
+                                                        <img src="`+ base_url + 'assets/images/desktop/' + d['image'] + `" alt="product" class="product-image img-fluid" width="250">
+                                                    </a>
+                                                    
+                                                    <div class="product-content">
+                                                        <h5 class="text-uppercase fs-5 mt-3">
+                                                            <a href="`+ base_url + 'assets/images/desktop/' + d['image'] + `">` + d['product_name'] + `</a>
+                                                        </h5>
+                                                        <a href="`+ base_url + 'home/detail/' + d['id'] + `" class="text-decoration-none" data-id_product="` + d['id'] + `" data-after="">
+                                                            <span><del>Rp. `+ rupiah(d['price']) + `</del></span>
+                                                            <span><b>Rp. `+ rupiah(d['price_diskon']) + `</b></span>
+                                                        </a>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>`;
+
+
+
+                    });
+                    $('.hasilSearch').html('');
+                    $('.hasilSearch').html(isiData);
+
+                }
+            })
+        } else {
+            $('.hasilSearch').html(`    <div class="alert alert-danger text-center" role="alert">
+                                        Tidak Ada Data
+                                        </div>`);
+        }
+
+    })
+
     $('.variant').on('click', function () {
 
         // Menghapus kelas 'selected' dari semua varian
@@ -60,16 +115,35 @@ $(document).ready(function () {
 
         // Menghapus kelas 'selected' dari semua varian
         $('.variantSize').removeClass('selected');
-
         // Menambahkan kelas 'selected' ke varian yang diklik
         $(this).addClass('selected');
-
+        let id = $(this).data('id');
         // Memperbarui nilai input tersembunyi dengan data varian yang dipilih
         let selectedValue = $(this).data('value');
         let selectedImage = $(this).data('image');
         $('#selectedVariant').val(selectedValue);
         $('.img-poster').attr('src', base_url + '/assets/images/product/' + selectedImage)
-
+        $.ajax({
+            url: base_url + '/home/changeSize',
+            type: 'post',
+            dataType: 'json',
+            data: {
+                id
+            },
+            success: function (data) {
+                let originPrice = data['price'];
+                let diskonPrice = data['price_diskon'];
+                if (originPrice != diskonPrice) {
+                    $('.hargaNormal').show();
+                    $('.harga-satuan').html('');
+                    $('.harga-satuan').html(rupiah(originPrice));
+                } else {
+                    $('.hargaNormal').hide();
+                }
+                $('.harga-diskon').html('');
+                $('.harga-diskon').html(rupiah(data['price_diskon']));
+            }
+        })
 
 
         // Opsional: Menampilkan varian terpilih di konsol
@@ -273,7 +347,7 @@ $(document).ready(function () {
     $('body').on('change', '#prov_kurir', function () {
         let prov_id = $(this).val();
         $.ajax({
-            url: base_url + '/product/prov',
+            url: base_url + 'home/prov',
             type: 'post',
             dataType: 'json',
             data: {
@@ -297,7 +371,7 @@ $(document).ready(function () {
         let kabkot = $('option:selected', this).attr('data-id');
         console.log(kabkot)
         $.ajax({
-            url: base_url + '/product/kabkot',
+            url: base_url + 'home/kabkot',
             type: 'post',
             dataType: 'json',
             data: {
@@ -321,7 +395,7 @@ $(document).ready(function () {
         let kec = $(this).val()
         console.log(kec)
         $.ajax({
-            url: base_url + '/product/kec',
+            url: base_url + 'home/kec',
             type: 'post',
             dataType: 'json',
             data: {
@@ -352,7 +426,7 @@ $(document).ready(function () {
         let weight = 1000;
         let kurir = $('#kurir_kurir').val();
         $.ajax({
-            url: base_url + '/product/cost',
+            url: base_url + 'home/cost',
             type: 'post',
             dataType: 'json',
             data: {
@@ -1051,6 +1125,40 @@ $(document).ready(function () {
 
 
     })
+
+    // whatsapp
+    popupWhatsApp = () => {
+
+        let btnClosePopup = document.querySelector('.closePopup');
+        let btnOpenPopup = document.querySelector('.whatsapp-button');
+        let popup = document.querySelector('.popup-whatsapp');
+        let sendBtn = document.getElementById('send-btn');
+
+        btnClosePopup.addEventListener("click", () => {
+            popup.classList.toggle('is-active-whatsapp-popup')
+        })
+
+        btnOpenPopup.addEventListener("click", () => {
+            popup.classList.toggle('is-active-whatsapp-popup')
+            popup.style.animation = "fadeIn .6s 0.0s both";
+        })
+
+        sendBtn.addEventListener("click", () => {
+            let msg = document.getElementById('whats-in').value;
+            let relmsg = msg.replace(/ /g, "%20");
+            //just change the numbers "1515551234567" for your number. Don't use +001-(555)1234567     
+            window.open('https://wa.me/+6282114179247?text=' + relmsg, '_blank');
+
+        });
+
+        // setTimeout(() => {
+        //     popup.classList.toggle('is-active-whatsapp-popup');
+        // }, 3000);
+    }
+
+    popupWhatsApp();
+    // whatsapp
+
 
     loadTotalSelected()
     function loadTotalSelected() {

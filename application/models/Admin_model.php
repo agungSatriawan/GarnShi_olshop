@@ -101,6 +101,7 @@ class Admin_model extends CI_Model
         $query = $this->queryAllData();
         $query .= "						
                                 WHERE id_product = '" . $id_product . "'
+                                 GROUP BY id 
                                 ORDER BY
 								" . $orderBy . " " . $orderSort . " 
 									";
@@ -127,8 +128,9 @@ class Admin_model extends CI_Model
                             DISTINCT
                             varian.id,
                             varian.id_product,
-                            product.image,
+                            product_image.image,
                             product.product_name,
+                            product.keterangan subjudul,
                             master_uom.id id_uom,
                             master_uom.uom,
                             product.description,
@@ -168,12 +170,24 @@ class Admin_model extends CI_Model
                             master_uom
                             ON
                             master_uom.id = product.uom
+                            LEFT JOIN
+                            product_image
+                            ON product_image.id_product = product.id_product
                             WHERE
                             product_name IS NOT NULL
                             GROUP BY
-                            varian.id
+                            varian.id,
+                            product_image.image
                             ) a";
         return $query;
+    }
+
+    public function search($search)
+    {
+        $query = $this->queryAllData();
+        $query .= " where product_name LIKE '%" . $search . "%' AND category NOT IN('Diskon','carousel ') group BY id_product";
+        $res = $this->db->query($query)->result_array();
+        return $res;
     }
 
     public function updateProduct($id)
@@ -217,9 +231,11 @@ class Admin_model extends CI_Model
     {
         $getID = $this->db->get_where('varian', ['id' => $id])->row_array();
         $getID = $getID['id_product'];
+
         $query = $this->queryAllData();
-        $query .= " where id_product = '" . $getID . "' ";
+        $query .= " where id_product = '" . $getID . "' GROUP BY image";
         $res = $this->db->query($query);
+
         return $res->result_array();
     }
 

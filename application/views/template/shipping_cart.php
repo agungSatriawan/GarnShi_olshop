@@ -24,7 +24,7 @@
                                          <div class="col-sm-3">
                                              <img class="img img-flex" src="<?= base_url('assets/images/product/' . $co['image_varian']) ?>" alt="" width="100">
                                          </div>
-                                         <div class="col-sm-6">
+                                         <div class="col-sm-6 mx-3">
                                              <p class="d-inline"><?= $co['product_name'] ?></p>
                                              <small class="d-block text-secondary">Color: <?= $co['color'] ?></small>
                                              <small class="d-block text-secondary">Size: <?= ucwords($co['size']) ?></small>

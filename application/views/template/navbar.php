@@ -102,9 +102,8 @@
 
     <div class="preloader text-white fs-6 text-uppercase overflow-hidden"></div>
 
-    <!-- <div class="search-popup">
+    <div class="search-popup">
         <div class="search-popup-container">
-
             <form role="search" method="get" class="form-group" action="">
                 <input type="search" id="search-form" class="form-control border-0 border-bottom" placeholder="Type and press enter" value="" name="s" />
                 <button type="submit" class="search-submit border-0 position-absolute bg-white" style="top: 15px;right: 15px;"><svg class="search" width="24" height="24">
@@ -112,34 +111,22 @@
                     </svg></button>
             </form>
 
-            <h5 class="cat-list-title">Browse Categories</h5>
+            <div id="overlay" class="overlay"></div>
+            <div class="layout">
+                <main class="content">
+                    <div>
+                        <div class="row hasilSearch"></div>
+                    </div>
+                </main>
 
-            <ul class="cat-list">
-                <li class="cat-list-item">
-                    <a href="#" title="Jackets">Jackets</a>
-                </li>
-                <li class="cat-list-item">
-                    <a href="#" title="T-shirts">T-shirts</a>
-                </li>
-                <li class="cat-list-item">
-                    <a href="#" title="Handbags">Handbags</a>
-                </li>
-                <li class="cat-list-item">
-                    <a href="#" title="Accessories">Accessories</a>
-                </li>
-                <li class="cat-list-item">
-                    <a href="#" title="Cosmetics">Cosmetics</a>
-                </li>
-                <li class="cat-list-item">
-                    <a href="#" title="Dresses">Dresses</a>
-                </li>
-                <li class="cat-list-item">
-                    <a href="#" title="Jumpsuits">Jumpsuits</a>
-                </li>
-            </ul>
+            </div>
+
+
+
+
 
         </div>
-    </div> -->
+    </div>
     <?php if ($this->session->userdata('email') != '') : ?>
         <div class="offcanvas offcanvas-end" data-bs-scroll="true" tabindex="-1" id="offcanvasCart" aria-labelledby="My Cart">
             <div class="offcanvas-header justify-content-center">
@@ -179,19 +166,27 @@
             </div>
         </div>
     <?php endif ?>
+    <nav style="background-color:  #f5d2c1 ; height: 20px;">
+        <marquee behavior="" direction=""></marquee>
+    </nav>
     <nav class="navbar navbar-expand-lg bg-light text-uppercase fs-6 p-2 border-bottom align-items-center ">
         <div class="container-fluid">
-            <div class="row justify-content-between align-items-center w-100 ml-5">
+
+
+
+
+            <div class="row justify-content-between align-items-center w-100 ">
                 <div class="col-3 col-lg-auto align-self-center">
-                    <a class="navbar-brand text-white align-self-center" href="<?= base_url() ?>">
+                    <a class="navbar-brand text-white align-self-center d-inline-flex" href="<?= base_url() ?>">
                         <h4 class="text-secondary">Gar&Shi</h4>
                     </a>
                 </div>
+                <div class="col-3 col-lg-auto align-self-center"></div>
 
-                <div class="col-6 col-lg-auto align-self-center">
-                    <ul class="list-unstyled d-flex m-0">
+                <div class="col-6 col-lg-auto align-self-center text-end">
+                    <ul class="list-unstyled d-flex m-0 d-inline-flex">
                         <li class="d-none d-lg-block">
-                            <a href="<?= base_url('shop') ?>" class="text-uppercase mx-3" data-bs-toggle="offcanvas">Shop
+                            <a href="<?= base_url('shop') ?>" class="text-uppercase mx-3" data-bs-toggle="">Shop
                             </a>
                         </li>
                         <?php if ($this->session->userdata('email') != '') : ?>
@@ -212,6 +207,13 @@
                                 </svg>
                             </a>
                         </li>
+                        <li class="search-box">
+                            <a href="#search" class="search-button">
+                                <svg width="24" height="24" viewBox="0 0 24 24">
+                                    <use xlink:href="#search"></use>
+                                </svg>
+                            </a>
+                        </li>
                         <?php if ($this->session->userdata('email') != '') : ?>
                             <li class="d-lg-none">
                                 <a href="#" class="mx-2" data-bs-toggle="offcanvas" data-bs-target="#offcanvasCart" aria-controls="offcanvasCart">
@@ -220,6 +222,7 @@
                                     </svg>
                                 </a>
                             </li>
+
 
 
                             <?php if ($this->session->userdata('role_id') == 1) : ?>
@@ -247,13 +250,7 @@
 
 
 
-                        <!-- <li class="search-box" class="mx-2">
-                            <a href="#search" class="search-button">
-                                <svg width="24" height="24" viewBox="0 0 24 24">
-                                    <use xlink:href="#search"></use>
-                                </svg>
-                            </a>
-                        </li> -->
+
                     </ul>
                 </div>
             </div>
